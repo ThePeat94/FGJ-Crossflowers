@@ -42,7 +42,7 @@ public class ResourceController
         return true;
     }
     
-    private bool CanAfford(float amount)
+    public bool CanAfford(float amount)
     {
         return this.m_currentValue > 0 && amount <= this.m_currentValue;
     }
