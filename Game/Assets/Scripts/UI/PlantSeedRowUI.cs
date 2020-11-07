@@ -19,6 +19,7 @@ namespace UI
                 targetField.PlantSeed(seed);
                 PlayerHudUI.Instance.ClosePlantSeedUi();
                 PlayerController.Instance.PlayerInventory.Seeds.Remove(seed);
+                PlayerController.Instance.StaminaController.UseResource(targetField.PloughStaminaCost);
             });
         }
     }

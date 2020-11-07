@@ -56,5 +56,10 @@ namespace UI
         {
             this.m_staminaSlider.value = e.NewValue;
         }
+
+        public void CloseAllMenus()
+        {
+            this.m_plantSeedUi.CloseUi();
+        }
     }
 }

@@ -27,7 +27,12 @@ public class GameManager : MonoBehaviour
     {
         foreach (var field in this.m_fields)
         {
-            field.ProcessCurrentDay();
+            field.ProcessGrowth();
+        }
+        
+        foreach (var field in this.m_fields)
+        {
+            field.ProcessNewDay();
         }
     }
 }
