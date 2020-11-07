@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_movementStaminaCost;
     [SerializeField] private ResourceData m_staminaData;
     [SerializeField] private ResourceData m_waterData;
+    [SerializeField] private GameObject m_rake;
+    [SerializeField] private GameObject m_waterCan;
     
     private ResourceController m_staminaController;
     private ResourceController m_waterController;
@@ -28,7 +30,8 @@ public class PlayerController : MonoBehaviour
     private Animator m_animator;
     private GameObject m_currentInteractable;
 
-    private int m_isWalkingHash = Animator.StringToHash("IsWalking");
+    private static readonly int s_isWalkingHash = Animator.StringToHash("IsWalking");
+    private static readonly int s_waterAnimationTrigger = Animator.StringToHash("Water");
 
     public static PlayerController Instance => s_instance;
     
@@ -36,6 +39,13 @@ public class PlayerController : MonoBehaviour
     public ResourceController WaterController => this.m_waterController;
     public PlayerInventory PlayerInventory => this.m_playerInventory;
 
+    public void PlantSeed(Seed seed, float ploughingCost)
+    {
+        this.m_playerInventory.Seeds.Remove(seed);
+        this.m_staminaController.UseResource(ploughingCost);
+        StartCoroutine(this.PlayPloughAnimation());
+    }
+    
     private void Awake()
     {
         if (s_instance == null)
@@ -107,14 +117,46 @@ public class PlayerController : MonoBehaviour
             if (hitInteractable != null)
             {
                 var interactable = hitInteractable.GetComponent<IInteractable>();
+                
+                
+                if (interactable is Field)
+                {
+                    var field = (Field) interactable;
+                    if (!field.IsWatered)
+                    {
+                        StartCoroutine(this.PlayWaterAnimation());
+                    }
+                }
+                
                 interactable.Interact();
                 this.m_currentInteractable = hitInteractable.gameObject;
+
             }
         }
         catch (Exception ex)
         {
             Debug.LogError(ex);
         }
+    }
+
+    private IEnumerator PlayWaterAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_waterCan.SetActive(true);
+        this.m_animator.SetTrigger(s_waterAnimationTrigger);
+        yield return new WaitForSeconds(5.583f);
+        this.m_waterCan.SetActive(false);
+        this.m_inputProcessor.enabled = true;
+    }
+
+    private IEnumerator PlayPloughAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_rake.SetActive(true);
+        this.m_animator.SetTrigger("Plough");
+        yield return new WaitForSeconds(3.025f);
+        this.m_rake.SetActive(false);
+        this.m_inputProcessor.enabled = true;
     }
     
     private void RotateTowards(Vector3 dir)
@@ -125,6 +167,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        this.m_animator.SetBool(this.m_isWalkingHash, this.m_moveDirection != Physics.gravity);
+        this.m_animator.SetBool(s_isWalkingHash, this.m_moveDirection != Physics.gravity);
     }
+
+
 }
