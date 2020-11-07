@@ -99,14 +99,14 @@ public class Field : MonoBehaviour, IInteractable
         else if (this.CanGrow() && this.m_currentProgress < 1f)
         {
             this.m_currentProgress += this.m_progressPerDay;
+            this.m_flowerTransform.localScale = Vector3.one * this.m_currentProgress;
         }
         else
         {
             this.m_currentProgress = 0f;
             this.m_plantedSeed = null;
+            this.m_flowerTransform.localScale = Vector3.zero;
         }
-
-        this.m_flowerTransform.localScale = Vector3.one * this.m_currentProgress;
     }
 
     public void ProcessNewDay()
@@ -116,10 +116,11 @@ public class Field : MonoBehaviour, IInteractable
 
     public void PlantSeed(Seed seedToPlant)
     {
-        if (seedToPlant != null)
+        if (this.m_plantedSeed == null)
         {
             this.m_plantedSeed = seedToPlant;
             this.m_flowerRenderer.material.color = seedToPlant.Color;
+            this.m_flowerTransform.localScale = Vector3.one / 10;
         }
     }
     
@@ -147,8 +148,7 @@ public class Field : MonoBehaviour, IInteractable
 
     private bool CanGrowNewFlower()
     {
-        Debug.Log($"{gameObject.name} is watered: {this.m_isWatered}; is planted: {IsPlanted}; {this.m_surroundingFields.Count(f => f.CanGrow())} surrounding fields can grow");
-        return this.m_isWatered && !this.IsPlanted && this.m_surroundingFields.Count(f => f.CanGrow()) > 1;
+       return this.m_isWatered && !this.IsPlanted && this.m_surroundingFields.Count(f => f.CanGrow()) > 1;
     }
 
     private void InitSurroundingFields()
