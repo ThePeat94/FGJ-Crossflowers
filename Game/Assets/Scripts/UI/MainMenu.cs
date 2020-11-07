@@ -1,47 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private GameObject m_StartMenu;
-    [SerializeField] private GameObject m_SelectPlayMode;
-
-    public void BtnPlay_Click()
+    public class MainMenu : MonoBehaviour
     {
-        this.m_StartMenu.SetActive(false);
-        this.m_SelectPlayMode.SetActive(true);        
-    }
+        [SerializeField] private GameObject m_StartMenu;
+        [SerializeField] private GameObject m_SelectPlayMode;
 
-    public void BtnQuit_Click()
-    {
-        Application.Quit();
-    }
+        public void BtnPlay_Click()
+        {
+            this.m_StartMenu.SetActive(false);
+            this.m_SelectPlayMode.SetActive(true);        
+        }
 
-    public void BtnHowTo_Click()
-    {
+        public void BtnQuit_Click()
+        {
+            Application.Quit();
+        }
 
-    }
+        public void BtnHowTo_Click()
+        {
 
-    public void BtnCredits_Click()
-    {
+        }
 
-    }
+        public void BtnCredits_Click()
+        {
 
-    public void BtnStoryMode_Click()
-    {
-        SceneManager.LoadScene(2);
-    }
+        }
 
-    public void BtnRandomMode_Click()
-    {
-        SceneManager.LoadScene(1);
-    }
+        public void BtnStoryMode_Click()
+        {
+            SceneManager.LoadScene(2);
+        }
 
-    public void BtnBackToStartScreen_Click()
-    {
-        this.m_SelectPlayMode.SetActive(false); 
-        this.m_StartMenu.SetActive(true);        
+        public void BtnRandomMode_Click()
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        public void BtnBackToStartScreen_Click()
+        {
+            this.m_SelectPlayMode.SetActive(false); 
+            this.m_StartMenu.SetActive(true);        
+        }
     }
 }
