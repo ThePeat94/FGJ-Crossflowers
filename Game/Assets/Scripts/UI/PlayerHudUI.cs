@@ -12,17 +12,18 @@ namespace UI
         [SerializeField] private Slider m_staminaSlider;
         [SerializeField] private Slider m_waterSlider;
         [SerializeField] private PlantSeedUI m_plantSeedUi;
+        [SerializeField] private ShopUI m_shopUI;
 
         public static PlayerHudUI Instance => s_instance;
 
-        public void ShowPlantSeedUi(Field targetField)
+        public void ShowPlantSeedUI(Field targetField)
         {
             this.m_plantSeedUi.Show(targetField);
         }
 
-        public void ClosePlantSeedUi()
+        public void ClosePlantSeedUI()
         {
-            this.m_plantSeedUi.CloseUi();
+            this.m_plantSeedUi.CloseUI();
         }
         
         private void Awake()
@@ -43,10 +44,22 @@ namespace UI
             this.m_waterSlider.value = PlayerController.Instance.WaterController.CurrentValue;
             PlayerController.Instance.StaminaController.ResourceValueChanged += StaminaControllerOnResourceValueChanged;
             PlayerController.Instance.WaterController.ResourceValueChanged += WaterControllerOnResourceValueChanged;
+            PlayerController.Instance.StaminaController.MaxValueChanged += (sender, args) => this.m_staminaSlider.maxValue = args.NewValue;
+            PlayerController.Instance.WaterController.MaxValueChanged += (sender, args) => this.m_waterSlider.maxValue = args.NewValue;
             
-            this.m_plantSeedUi.CloseUi();
+            this.CloseAllMenus();
+        }
+        public void CloseAllMenus()
+        {
+            this.m_plantSeedUi.CloseUI();
+            this.m_shopUI.CloseUI();
         }
 
+        public void ShowShopUI()
+        {
+            this.m_shopUI.ShowUI();
+        }
+        
         private void WaterControllerOnResourceValueChanged(object sender, ResourceValueChangedEventArgs e)
         {
             this.m_waterSlider.value = e.NewValue;
@@ -55,11 +68,6 @@ namespace UI
         private void StaminaControllerOnResourceValueChanged(object sender, ResourceValueChangedEventArgs e)
         {
             this.m_staminaSlider.value = e.NewValue;
-        }
-
-        public void CloseAllMenus()
-        {
-            this.m_plantSeedUi.CloseUi();
         }
     }
 }

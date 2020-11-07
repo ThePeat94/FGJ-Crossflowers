@@ -16,7 +16,7 @@
           <e p="EventArgs" t="Include">
             <e p="ResourceValueChangedEventArgs.cs" t="Include" />
           </e>
-          <e p="FarmGrid.cs" t="Include" />
+          <e p="Farm.cs" t="Include" />
           <e p="Field.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Helper" t="Include">
@@ -30,14 +30,20 @@
           <e p="ResourceController.cs" t="Include" />
           <e p="Scriptables" t="Include">
             <e p="ResourceData.cs" t="Include" />
+            <e p="ResourceUpgradeData.cs" t="Include" />
             <e p="ShopSeedData.cs" t="Include" />
+            <e p="UnlockFarmData.cs" t="Include" />
           </e>
           <e p="Seed.cs" t="Include" />
+          <e p="Shop.cs" t="Include" />
           <e p="UI" t="Include">
+            <e p="BuySeedRowUI.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
             <e p="PlantSeedRowUI.cs" t="Include" />
             <e p="PlantSeedUI.cs" t="Include" />
             <e p="PlayerHudUI.cs" t="Include" />
+            <e p="SellSeedRowUI.cs" t="Include" />
+            <e p="ShopUI.cs" t="Include" />
           </e>
           <e p="WaterTrough.cs" t="Include" />
         </e>

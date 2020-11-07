@@ -1,14 +1,22 @@
-﻿using UnityEngine;
+﻿using Scriptables;
+using UnityEngine;
 
 public class Seed
 {
-    public Seed(Color color, int sellValue)
+    public Seed(ShopSeedData seedData)
+    {
+        this.Color = seedData.Color;
+        this.SellValue = 0.25f;
+        this.Name = seedData.Name;
+    }
+    
+    public Seed(Color color, float sellValue)
     {
         this.Color = color;
         this.SellValue = sellValue;
     }
 
-    public Seed(Color color, int sellValue, string name)
+    public Seed(Color color, float sellValue, string name)
     {
         this.Color = color;
         this.SellValue = sellValue;
@@ -16,6 +24,6 @@ public class Seed
     }
 
     public Color Color { get; }
-    public int SellValue { get; }
+    public float SellValue { get; }
     public string Name { get; }
 }

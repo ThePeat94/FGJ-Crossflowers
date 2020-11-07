@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Stamina Resource Data 1
   m_EditorClassIdentifier: 
   m_initMaxValue: 250
+  m_startValue: 250
