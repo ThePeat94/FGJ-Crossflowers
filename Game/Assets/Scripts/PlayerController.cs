@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Scriptables;
+using UI;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController m_characterController;
     private InputProcessor m_inputProcessor;
     private Animator m_animator;
+    private GameObject m_currentInteractable;
 
     private int m_isWalkingHash = Animator.StringToHash("IsWalking");
 
@@ -32,7 +34,6 @@ public class PlayerController : MonoBehaviour
     
     public ResourceController StaminaController => this.m_staminaController;
     public ResourceController WaterController => this.m_waterController;
-
     public PlayerInventory PlayerInventory => this.m_playerInventory;
 
     private void Awake()
@@ -62,6 +63,12 @@ public class PlayerController : MonoBehaviour
         this.Rotate();
         if (this.m_inputProcessor.InteractTriggered)
             this.Interact();
+
+        if (this.m_currentInteractable != null && Mathf.Abs(Vector3.Distance(this.transform.position, this.m_currentInteractable.transform.position)) >= 2f)
+        {
+            PlayerHudUI.Instance.CloseAllMenus();
+            this.m_currentInteractable = null;
+        }
     }
 
     private void LateUpdate()
@@ -97,9 +104,11 @@ public class PlayerController : MonoBehaviour
         {
             var hitInteractable = hitObjects.First(o => o.GetComponent<IInteractable>() != null);
 
-            if (hitInteractable != null) 
+            if (hitInteractable != null)
             {
-                hitInteractable.GetComponent<IInteractable>().Interact();
+                var interactable = hitInteractable.GetComponent<IInteractable>();
+                interactable.Interact();
+                this.m_currentInteractable = hitInteractable.gameObject;
             }
         }
         catch (Exception ex)
