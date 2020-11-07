@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (this.m_inputProcessor.InteractTriggered)
             this.Interact();
 
-        if (this.m_currentInteractable != null && Mathf.Abs(Vector3.Distance(this.transform.position, this.m_currentInteractable.transform.position)) >= 2f)
+        if (this.m_currentInteractable != null && Mathf.Abs(Vector3.Distance(this.transform.position, this.m_currentInteractable.transform.position)) >= 3f)
         {
             PlayerHudUI.Instance.CloseAllMenus();
             this.m_currentInteractable = null;

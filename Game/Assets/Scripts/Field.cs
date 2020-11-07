@@ -9,26 +9,26 @@ using Random = System.Random;
 public class Field : MonoBehaviour, IInteractable
 {
     private static Random s_random = new Random();
-    
+
     [SerializeField] private float m_ploughStaminaCost;
     [SerializeField] private float m_waterCost;
     [SerializeField] private float m_progressPerDay;
     [SerializeField] private Transform m_flowerTransform;
     [SerializeField] private MeshRenderer m_flowerRenderer;
     [SerializeField] private GameObject m_center;
+    [SerializeField] private bool m_isUnlocked;
+
 
     private bool m_isWatered;
     private Seed m_plantedSeed;
-    private bool m_isUnlocked;
-
     private float m_currentProgress;
 
-    [SerializeField]
-    private List<Field> m_surroundingFields;
+    [SerializeField] private List<Field> m_surroundingFields;
 
     public bool IsWatered => this.m_isWatered;
     public bool IsPlanted => this.m_plantedSeed != null;
     public Seed PlantedSeed => this.m_plantedSeed;
+    public bool IsUnlocked => this.m_isUnlocked;
 
     public float PloughStaminaCost => this.m_ploughStaminaCost;
 
@@ -37,10 +37,15 @@ public class Field : MonoBehaviour, IInteractable
         this.m_currentProgress = 0f;
         this.m_flowerTransform.localScale = Vector3.zero;
         this.InitSurroundingFields();
+
+        this.gameObject.SetActive(this.m_isUnlocked);
     }
 
     public void Interact()
     {
+        if (!this.m_isUnlocked)
+            return;
+
         if (this.CanHarvestFlower())
         {
             Debug.Log("Harvest harvest");
@@ -51,14 +56,14 @@ public class Field : MonoBehaviour, IInteractable
 
             for (var i = 0; i < rndAmount; i++)
                 PlayerController.Instance.PlayerInventory.Seeds.Add(newSeed);
-            
+
             this.m_currentProgress = 0f;
             this.m_flowerTransform.localScale = Vector3.zero;
             this.m_isWatered = false;
             this.m_plantedSeed = null;
             return;
         }
-            
+
         if (this.CanWaterField())
         {
             Debug.Log("Water water");
@@ -69,27 +74,30 @@ public class Field : MonoBehaviour, IInteractable
         if (this.CanPlantSeed())
         {
             Debug.Log("Plant Plant");
-            PlayerHudUI.Instance.ShowPlantSeedUi(this);
+            PlayerHudUI.Instance.ShowPlantSeedUI(this);
             return;
         }
     }
 
     public void ProcessGrowth()
     {
+        if (!this.m_isUnlocked)
+            return;
+
         if (this.CanGrowNewFlower())
         {
             var surroundingSeeds = this.m_surroundingFields.Where(f => f.IsPlanted).Select(f => f.PlantedSeed).ToList();
 
             if (surroundingSeeds.Count < this.m_surroundingFields.Count / 2)
                 return;
-            
+
             var targetColor = surroundingSeeds.First().Color;
             var t = 1f / surroundingSeeds.Count;
             foreach (var seed in surroundingSeeds)
             {
                 targetColor = Color.Lerp(targetColor, seed.Color, t);
             }
-            
+
             var newSeed = new Seed(targetColor, 10, FlowerData.GetRandomFlowerName());
 
             Debug.Log("New Color is " + targetColor);
@@ -111,6 +119,8 @@ public class Field : MonoBehaviour, IInteractable
 
     public void ProcessNewDay()
     {
+        if (!this.m_isUnlocked)
+            return;
         this.m_isWatered = false;
     }
 
@@ -123,7 +133,7 @@ public class Field : MonoBehaviour, IInteractable
             this.m_flowerTransform.localScale = Vector3.one / 10;
         }
     }
-    
+
     private bool CanWaterField()
     {
         return !this.m_isWatered &&
@@ -138,7 +148,7 @@ public class Field : MonoBehaviour, IInteractable
 
     private bool CanHarvestFlower()
     {
-        return this.IsPlanted && this.m_currentProgress >= 1f && PlayerController.Instance.StaminaController.UseResource(this.m_ploughStaminaCost); 
+        return this.IsPlanted && this.m_currentProgress >= 1f && PlayerController.Instance.StaminaController.UseResource(this.m_ploughStaminaCost);
     }
 
     private bool CanGrow()
@@ -148,7 +158,7 @@ public class Field : MonoBehaviour, IInteractable
 
     private bool CanGrowNewFlower()
     {
-       return this.m_isWatered && !this.IsPlanted && this.m_surroundingFields.Count(f => f.CanGrow()) > 1;
+        return this.m_isWatered && !this.IsPlanted && this.m_surroundingFields.Count(f => f.CanGrow()) > 1;
     }
 
     private void InitSurroundingFields()
@@ -158,7 +168,7 @@ public class Field : MonoBehaviour, IInteractable
         {
             for (int j = -1; j < 2; j++)
             {
-                if(i == 0 && j == 0)
+                if (i == 0 && j == 0)
                     continue;
 
                 var hitField = this.GetFieldForDirection(new Vector3(i, 0f, j));
@@ -170,13 +180,20 @@ public class Field : MonoBehaviour, IInteractable
             }
         }
     }
-    
+
     private Field GetFieldForDirection(Vector3 direction)
     {
         if (Physics.Raycast(this.m_center.transform.position, direction, out var hitInfo, 10f, 1 << LayerMask.NameToLayer("Field")))
         {
             return hitInfo.collider.GetComponent<Field>();
         }
+
         return null;
+    }
+
+    public void Unlock()
+    {
+        this.m_isUnlocked = true;
+        this.gameObject.SetActive(true);
     }
 }

@@ -19,7 +19,7 @@ namespace UI
             this.gameObject.SetActive(true);
         }
 
-        public void CloseUi()
+        public void CloseUI()
         {
             this.gameObject.SetActive(false);
         }

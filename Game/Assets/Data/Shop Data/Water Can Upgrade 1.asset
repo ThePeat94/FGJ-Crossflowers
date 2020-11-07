@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f9cc16fbed0463d92b59cc147c4c087, type: 3}
-  m_Name: Water Resource Data
+  m_Script: {fileID: 11500000, guid: 2cc90cf76aa4455bb70b4d53de95531e, type: 3}
+  m_Name: Water Can Upgrade 1
   m_EditorClassIdentifier: 
-  m_initMaxValue: 10
-  m_startValue: 10
+  m_increaseValue: 10
+  m_cost: 2

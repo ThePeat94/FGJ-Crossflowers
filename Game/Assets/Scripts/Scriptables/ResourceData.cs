@@ -6,7 +6,9 @@ namespace Scriptables
     public class ResourceData : ScriptableObject
     {
         [SerializeField] private float m_initMaxValue;
+        [SerializeField] private float m_startValue;
 
         public float InitMaxValue => this.m_initMaxValue;
+        public float StartValue => this.m_startValue;
     }
 }
