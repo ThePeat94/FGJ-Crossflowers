@@ -21,9 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="01fd26be-56f0-4aad-b6cb-945e5447157e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Field.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Field.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="prototype" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -43,9 +40,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraFollower.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ResourceController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Scripts/Field.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/351E49E2-A5BF-4FD6-BEAB-B458CE2255F3/f2/a50ce978/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Scripts/Field.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Scripts/Field.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -121,7 +121,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604697066406</updated>
-      <workItem from="1604697079536" duration="26975000" />
+      <workItem from="1604697079536" duration="27647000" />
     </task>
     <task id="LOCAL-00001" summary="Prototype Game">
       <created>1604717167967</created>
@@ -144,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604750866352</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Player Model Integrated">
+      <created>1604752985914</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604752985914</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +175,8 @@
     <MESSAGE value="Prototype Game" />
     <MESSAGE value="Post Processing" />
     <MESSAGE value="Mixing Colors&#10;UI/Stamina Improvement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mixing Colors&#10;UI/Stamina Improvement" />
+    <MESSAGE value="Player Model Integrated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player Model Integrated" />
   </component>
   <component name="WindowStateProjectService">
     <state width="584" height="797" key="DebuggerActiveHint" timestamp="1604749973985">
@@ -288,6 +296,14 @@
     <state width="2505" height="484" key="GridCell.Tab.3.right/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1400" timestamp="1604746652052" />
     <state width="2505" height="484" key="GridCell.Tab.3.right/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@-2560.0.2560.1400" timestamp="1604715697198" />
     <state width="2505" height="484" key="GridCell.Tab.3.right/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@0.0.2560.1400" timestamp="1604709417102" />
+    <state x="118" y="0" width="2064" height="1400" key="MergeDialog" timestamp="1604753044145">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="118" y="0" width="2064" height="1400" key="MergeDialog/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604753044145" />
+    <state x="-1741" y="389" key="MultipleFileMergeDialog" timestamp="1604753048922">
+      <screen x="-2560" y="0" width="2560" height="1400" />
+    </state>
+    <state x="-1741" y="389" key="MultipleFileMergeDialog/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604753048922" />
     <state x="1063" y="172" key="RiderGenerateDialog" timestamp="1604711271233">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -296,10 +312,10 @@
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
     <state x="-2468" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604750473328" />
-    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2" timestamp="1604750867828">
+    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2" timestamp="1604753072923">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
-    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604750867828" />
+    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604753072923" />
     <state x="-1788" y="343" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@-2560.0.2560.1400" timestamp="1604717169903" />
     <state x="772" y="343" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@0.0.2560.1400" timestamp="1604717879767" />
     <state x="-1119" y="302" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1604717122768">
@@ -314,37 +330,5 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="859" y="308" width="840" height="1034" key="search.everywhere.popup/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@0.0.2560.1400" timestamp="1604703193990" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Field.cs</url>
-          <line>46</line>
-          <properties documentPath="G:\Unity\GameJam2\Game\Assets\Scripts\Field.cs" initialLine="32">
-            <startOffsets>
-              <option value="1300" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1387" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Field.cs</url>
-          <line>96</line>
-          <properties documentPath="G:\Unity\GameJam2\Game\Assets\Scripts\Field.cs" initialLine="96">
-            <startOffsets>
-              <option value="2953" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2977" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
