@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Input;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,5 +32,6 @@ public class InputProcessor : MonoBehaviour
     private void OnDisable()
     {
         this.m_playerInput?.Disable();
+        this.m_movementInput = Vector3.zero;
     }
 }

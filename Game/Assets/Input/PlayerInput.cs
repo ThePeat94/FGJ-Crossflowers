@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerInput : IInputActionCollection, IDisposable
+namespace Input
 {
-    public InputActionAsset asset { get; }
-    public @PlayerInput()
+    public class @PlayerInput : IInputActionCollection, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+        public @PlayerInput()
+        {
+            this.asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
@@ -126,109 +128,110 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Actions
-        m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
-        m_Actions_Move = m_Actions.FindAction("Move", throwIfNotFound: true);
-        m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
-        m_Actions_Inspect = m_Actions.FindAction("Inspect", throwIfNotFound: true);
-    }
+            // Actions
+            this.m_Actions = this.asset.FindActionMap("Actions", throwIfNotFound: true);
+            this.m_Actions_Move = this.m_Actions.FindAction("Move", throwIfNotFound: true);
+            this.m_Actions_Interact = this.m_Actions.FindAction("Interact", throwIfNotFound: true);
+            this.m_Actions_Inspect = this.m_Actions.FindAction("Inspect", throwIfNotFound: true);
+        }
 
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-
-    // Actions
-    private readonly InputActionMap m_Actions;
-    private IActionsActions m_ActionsActionsCallbackInterface;
-    private readonly InputAction m_Actions_Move;
-    private readonly InputAction m_Actions_Interact;
-    private readonly InputAction m_Actions_Inspect;
-    public struct ActionsActions
-    {
-        private @PlayerInput m_Wrapper;
-        public ActionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Actions_Move;
-        public InputAction @Interact => m_Wrapper.m_Actions_Interact;
-        public InputAction @Inspect => m_Wrapper.m_Actions_Inspect;
-        public InputActionMap Get() { return m_Wrapper.m_Actions; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ActionsActions set) { return set.Get(); }
-        public void SetCallbacks(IActionsActions instance)
+        public void Dispose()
         {
-            if (m_Wrapper.m_ActionsActionsCallbackInterface != null)
+            UnityEngine.Object.Destroy(this.asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => this.asset.bindingMask;
+            set => this.asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => this.asset.devices;
+            set => this.asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => this.asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return this.asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return this.asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            this.asset.Enable();
+        }
+
+        public void Disable()
+        {
+            this.asset.Disable();
+        }
+
+        // Actions
+        private readonly InputActionMap m_Actions;
+        private IActionsActions m_ActionsActionsCallbackInterface;
+        private readonly InputAction m_Actions_Move;
+        private readonly InputAction m_Actions_Interact;
+        private readonly InputAction m_Actions_Inspect;
+        public struct ActionsActions
+        {
+            private @PlayerInput m_Wrapper;
+            public ActionsActions(@PlayerInput wrapper) { this.m_Wrapper = wrapper; }
+            public InputAction @Move => this.m_Wrapper.m_Actions_Move;
+            public InputAction @Interact => this.m_Wrapper.m_Actions_Interact;
+            public InputAction @Inspect => this.m_Wrapper.m_Actions_Inspect;
+            public InputActionMap Get() { return this.m_Wrapper.m_Actions; }
+            public void Enable() { this.Get().Enable(); }
+            public void Disable() { this.Get().Disable(); }
+            public bool enabled => this.Get().enabled;
+            public static implicit operator InputActionMap(ActionsActions set) { return set.Get(); }
+            public void SetCallbacks(IActionsActions instance)
             {
-                @Move.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnMove;
-                @Interact.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
-                @Inspect.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInspect;
-                @Inspect.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInspect;
-                @Inspect.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInspect;
-            }
-            m_Wrapper.m_ActionsActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @Inspect.started += instance.OnInspect;
-                @Inspect.performed += instance.OnInspect;
-                @Inspect.canceled += instance.OnInspect;
+                if (this.m_Wrapper.m_ActionsActionsCallbackInterface != null)
+                {
+                    this.Move.started -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnMove;
+                    this.Move.performed -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnMove;
+                    this.Move.canceled -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnMove;
+                    this.Interact.started -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
+                    this.Interact.performed -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
+                    this.Interact.canceled -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
+                    this.Inspect.started -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnInspect;
+                    this.Inspect.performed -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnInspect;
+                    this.Inspect.canceled -= this.m_Wrapper.m_ActionsActionsCallbackInterface.OnInspect;
+                }
+                this.m_Wrapper.m_ActionsActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    this.Move.started += instance.OnMove;
+                    this.Move.performed += instance.OnMove;
+                    this.Move.canceled += instance.OnMove;
+                    this.Interact.started += instance.OnInteract;
+                    this.Interact.performed += instance.OnInteract;
+                    this.Interact.canceled += instance.OnInteract;
+                    this.Inspect.started += instance.OnInspect;
+                    this.Inspect.performed += instance.OnInspect;
+                    this.Inspect.canceled += instance.OnInspect;
+                }
             }
         }
-    }
-    public ActionsActions @Actions => new ActionsActions(this);
-    public interface IActionsActions
-    {
-        void OnMove(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnInspect(InputAction.CallbackContext context);
+        public ActionsActions @Actions => new ActionsActions(this);
+        public interface IActionsActions
+        {
+            void OnMove(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
+            void OnInspect(InputAction.CallbackContext context);
+        }
     }
 }

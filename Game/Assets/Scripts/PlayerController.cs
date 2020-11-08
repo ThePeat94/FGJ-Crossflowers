@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_movementStaminaCost;
     [SerializeField] private ResourceData m_staminaData;
     [SerializeField] private ResourceData m_waterData;
+    [SerializeField] private GameObject m_rake;
+    [SerializeField] private GameObject m_waterCan;
+    [SerializeField] private float m_ploughStaminaCost;
+    [SerializeField] private float m_gatherStaminaCost;
+    [SerializeField] private float m_waterStaminaCost;
+    [SerializeField] private float m_waterFieldCost;
     
     private ResourceController m_staminaController;
     private ResourceController m_waterController;
@@ -28,7 +34,12 @@ public class PlayerController : MonoBehaviour
     private Animator m_animator;
     private GameObject m_currentInteractable;
 
-    private int m_isWalkingHash = Animator.StringToHash("IsWalking");
+    private IInteractable m_lastHit;
+    
+    private static readonly int s_isWalkingHash = Animator.StringToHash("IsWalking");
+    private static readonly int s_waterAnimationTriggerHash = Animator.StringToHash("Water");
+    private static readonly int s_shrugTriggerHash = Animator.StringToHash("Shrug");
+    private static readonly int s_gatherTriggerHash = Animator.StringToHash("Gather");
 
     public static PlayerController Instance => s_instance;
     
@@ -36,6 +47,13 @@ public class PlayerController : MonoBehaviour
     public ResourceController WaterController => this.m_waterController;
     public PlayerInventory PlayerInventory => this.m_playerInventory;
 
+    public void PlantSeed(Seed seed)
+    {
+        this.m_playerInventory.RemoveSeed(seed);
+        this.m_staminaController.UseResource(this.m_ploughStaminaCost);
+        this.StartCoroutine(this.PlayPloughAnimation());
+    }
+    
     private void Awake()
     {
         if (s_instance == null)
@@ -61,6 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         this.Move();
         this.Rotate();
+        this.OutlineInteractionTarget();
         if (this.m_inputProcessor.InteractTriggered)
             this.Interact();
 
@@ -74,6 +93,38 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         this.UpdateAnimator();
+    }
+
+    private void OutlineInteractionTarget()
+    {
+        try
+        {
+            var hitObjects = Physics.OverlapBox(this.transform.position + transform.forward, new Vector3(0.5f, 0.25f, 0.5f));
+            var hitInteractable = hitObjects.FirstOrDefault(o => o.GetComponent<IInteractable>() != null);
+            var hit = hitInteractable?.GetComponent<IInteractable>();
+
+            if (hit == null && this.m_lastHit != null)
+            {
+                this.m_lastHit.DisableOutline();
+                this.m_lastHit = null;
+            }
+            else if (hit != null && this.m_lastHit == null)
+            {
+                this.m_lastHit = hit;
+                this.m_lastHit.EnableOutline();
+            }
+            else if (hit != this.m_lastHit)
+            {
+                this.m_lastHit.DisableOutline();
+                this.m_lastHit = hit;
+                this.m_lastHit.EnableOutline();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+        
     }
     
     protected void Move()
@@ -107,14 +158,107 @@ public class PlayerController : MonoBehaviour
             if (hitInteractable != null)
             {
                 var interactable = hitInteractable.GetComponent<IInteractable>();
-                interactable.Interact();
+                if (interactable is Field)
+                {
+                    var field = (Field) interactable;
+                    this.InteractWithField(field);
+                }
+                else
+                {
+                    interactable.Interact();
+                }
                 this.m_currentInteractable = hitInteractable.gameObject;
+
             }
         }
         catch (Exception ex)
         {
             Debug.LogError(ex);
         }
+    }
+
+    private void InteractWithField(Field field)
+    {
+        if (field.CanHarvestFlower() && this.m_staminaController.UseResource(this.m_gatherStaminaCost))
+        {
+            field.Interact();
+            this.StartCoroutine(this.PlayGatherAnimation());
+        }
+        else if (field.CanWaterField() && this.m_staminaController.CanAfford(this.m_waterStaminaCost) && this.m_waterController.CanAfford(this.m_waterFieldCost))
+        {
+            field.Interact();
+            this.StartCoroutine(this.PlayWaterAnimation());
+            this.m_staminaController.UseResource(this.m_waterStaminaCost);
+            this.m_waterController.UseResource(this.m_waterFieldCost);
+        }
+        else if (field.CanPlantSeed() && this.m_staminaController.CanAfford(this.m_ploughStaminaCost) && this.m_playerInventory.Seeds.Count > 0)
+        {
+            field.Interact();
+        }
+        else
+        {
+            StartCoroutine(this.PlayShrugAnimation());
+            if (!this.m_staminaController.CanAfford(this.m_gatherStaminaCost) || !this.m_staminaController.CanAfford(this.m_waterStaminaCost) ||
+                !this.m_staminaController.CanAfford(this.m_ploughStaminaCost))
+            {
+                PlayerHudUI.Instance.ShowPlayerMonologue("I am too exhausted to work anymore. I need some rest.");
+            }
+            else if (field.IsWatered && field.IsPlanted && !field.CanHarvestFlower())
+            {
+                PlayerHudUI.Instance.ShowPlayerMonologue("This field is watered and has a planted seed. I should give it a day to grow.");
+            }
+            else if (!field.IsWatered && !this.m_waterController.CanAfford(this.m_waterFieldCost))
+            {
+                PlayerHudUI.Instance.ShowPlayerMonologue("My water can can't fulfill the needs of this field! I need to fill it up again.");
+            }
+            else if (this.m_playerInventory.Seeds.Count == 0)
+            {
+                if (field.CanGrowNewFlower())
+                {
+                    PlayerHudUI.Instance.ShowPlayerMonologue("I don't have any seeds I can plant! But it seems like something is growing here...");
+                }
+                else
+                {
+                    PlayerHudUI.Instance.ShowPlayerMonologue("I don't have any seeds I can plant! I should wait for other flowers to grow or buy some new seeds. The chest might have some for me.");
+                }
+            }
+        }
+    }
+
+    private IEnumerator PlayShrugAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_animator.SetTrigger(s_shrugTriggerHash);
+        yield return new WaitForSeconds(2f);
+        this.m_inputProcessor.enabled = true;
+    }
+
+    private IEnumerator PlayGatherAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_animator.SetTrigger(s_gatherTriggerHash);
+        yield return new WaitForSeconds(0.967f);
+        this.m_inputProcessor.enabled = true;
+    }
+
+    private IEnumerator PlayWaterAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_waterCan.SetActive(true);
+        this.m_animator.SetTrigger(s_waterAnimationTriggerHash);
+        yield return new WaitForSeconds(5.583f);
+        this.m_waterCan.SetActive(false);
+        this.m_inputProcessor.enabled = true;
+    }
+
+    private IEnumerator PlayPloughAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_rake.SetActive(true);
+        this.m_animator.SetTrigger("Plough");
+        yield return new WaitForSeconds(3.025f);
+        this.m_rake.SetActive(false);
+        this.m_inputProcessor.enabled = true;
     }
     
     private void RotateTowards(Vector3 dir)
@@ -125,6 +269,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        this.m_animator.SetBool(this.m_isWalkingHash, this.m_moveDirection != Physics.gravity);
+        this.m_animator.SetBool(s_isWalkingHash, this.m_moveDirection != Physics.gravity);
     }
+
+
 }
