@@ -76,13 +76,12 @@ public class Field : MonoBehaviour, IInteractable
         if (this.CanHarvestFlower())
         {
             Debug.Log("Harvest harvest");
-            var newSeed = new Seed(this.m_plantedSeed.Color, 2.25f, FlowerData.GetRandomFlowerName());
             var rndAmount = s_random.Next(2, 5);
 
-            PlayerHudUI.Instance.ShowPlayerMonologue($"Yippie! I got {rndAmount} seeds for {newSeed.Name}. 😀");
+            PlayerHudUI.Instance.ShowPlayerMonologue($"Yippie! I got {rndAmount} seeds for {this.m_plantedSeed.Name}. 😀");
 
             for (var i = 0; i < rndAmount; i++)
-                PlayerController.Instance.PlayerInventory.AddSeed(newSeed);
+                PlayerController.Instance.PlayerInventory.AddSeed(this.m_plantedSeed);
 
             this.m_currentProgress = 0f;
             this.m_flowerTransform.localScale = Vector3.zero;
