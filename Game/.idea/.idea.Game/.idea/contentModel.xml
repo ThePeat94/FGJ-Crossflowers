@@ -54,6 +54,7 @@
           <e p="UI" t="Include">
             <e p="BuySeedRowUI.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
+            <e p="MonologueUI.cs" t="Include" />
             <e p="PlantSeedRowUI.cs" t="Include" />
             <e p="PlantSeedUI.cs" t="Include" />
             <e p="PlayerHudUI.cs" t="Include" />

@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ResourceData m_waterData;
     [SerializeField] private GameObject m_rake;
     [SerializeField] private GameObject m_waterCan;
+    [SerializeField] private float m_ploughStaminaCost;
+    [SerializeField] private float m_gatherStaminaCost;
+    [SerializeField] private float m_waterStaminaCost;
+    [SerializeField] private float m_waterFieldCost;
     
     private ResourceController m_staminaController;
     private ResourceController m_waterController;
@@ -33,7 +37,9 @@ public class PlayerController : MonoBehaviour
     private IInteractable m_lastHit;
     
     private static readonly int s_isWalkingHash = Animator.StringToHash("IsWalking");
-    private static readonly int s_waterAnimationTrigger = Animator.StringToHash("Water");
+    private static readonly int s_waterAnimationTriggerHash = Animator.StringToHash("Water");
+    private static readonly int s_shrugTriggerHash = Animator.StringToHash("Shrug");
+    private static readonly int s_gatherTriggerHash = Animator.StringToHash("Gather");
 
     public static PlayerController Instance => s_instance;
     
@@ -41,11 +47,11 @@ public class PlayerController : MonoBehaviour
     public ResourceController WaterController => this.m_waterController;
     public PlayerInventory PlayerInventory => this.m_playerInventory;
 
-    public void PlantSeed(Seed seed, float ploughingCost)
+    public void PlantSeed(Seed seed)
     {
         this.m_playerInventory.RemoveSeed(seed);
-        this.m_staminaController.UseResource(ploughingCost);
-        StartCoroutine(this.PlayPloughAnimation());
+        this.m_staminaController.UseResource(this.m_ploughStaminaCost);
+        this.StartCoroutine(this.PlayPloughAnimation());
     }
     
     private void Awake()
@@ -152,22 +158,15 @@ public class PlayerController : MonoBehaviour
             if (hitInteractable != null)
             {
                 var interactable = hitInteractable.GetComponent<IInteractable>();
-                
-                
                 if (interactable is Field)
                 {
                     var field = (Field) interactable;
-                    if (!field.IsWatered && !field.CanHarvestFlower())
-                    {
-                        StartCoroutine(this.PlayWaterAnimation());
-                    }
-                    else if (field.CanHarvestFlower())
-                    {
-                        StartCoroutine(this.PlayGatherAnimation());
-                    }
+                    this.InteractWithField(field);
                 }
-                
-                interactable.Interact();
+                else
+                {
+                    interactable.Interact();
+                }
                 this.m_currentInteractable = hitInteractable.gameObject;
 
             }
@@ -178,10 +177,66 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void InteractWithField(Field field)
+    {
+        if (field.CanHarvestFlower() && this.m_staminaController.UseResource(this.m_gatherStaminaCost))
+        {
+            field.Interact();
+            this.StartCoroutine(this.PlayGatherAnimation());
+        }
+        else if (field.CanWaterField() && this.m_staminaController.CanAfford(this.m_waterStaminaCost) && this.m_waterController.CanAfford(this.m_waterFieldCost))
+        {
+            field.Interact();
+            this.StartCoroutine(this.PlayWaterAnimation());
+            this.m_staminaController.UseResource(this.m_waterStaminaCost);
+            this.m_waterController.UseResource(this.m_waterFieldCost);
+        }
+        else if (field.CanPlantSeed() && this.m_staminaController.CanAfford(this.m_ploughStaminaCost) && this.m_playerInventory.Seeds.Count > 0)
+        {
+            field.Interact();
+        }
+        else
+        {
+            StartCoroutine(this.PlayShrugAnimation());
+            if (!this.m_staminaController.CanAfford(this.m_gatherStaminaCost) || !this.m_staminaController.CanAfford(this.m_waterStaminaCost) ||
+                !this.m_staminaController.CanAfford(this.m_ploughStaminaCost))
+            {
+                PlayerHudUI.Instance.ShowPlayerMonologue("I am too exhausted to work anymore. I need some rest.");
+            }
+            else if (field.IsWatered && field.IsPlanted && !field.CanHarvestFlower())
+            {
+                PlayerHudUI.Instance.ShowPlayerMonologue("This field is watered and has a planted seed. I should give it a day to grow.");
+            }
+            else if (!field.IsWatered && !this.m_waterController.CanAfford(this.m_waterFieldCost))
+            {
+                PlayerHudUI.Instance.ShowPlayerMonologue("My water can can't fulfill the needs of this field! I need to fill it up again.");
+            }
+            else if (this.m_playerInventory.Seeds.Count == 0)
+            {
+                if (field.CanGrowNewFlower())
+                {
+                    PlayerHudUI.Instance.ShowPlayerMonologue("I don't have any seeds I can plant! But it seems like something is growing here...");
+                }
+                else
+                {
+                    PlayerHudUI.Instance.ShowPlayerMonologue("I don't have any seeds I can plant! I should wait for other flowers to grow or buy some new seeds. The chest might have some for me.");
+                }
+            }
+        }
+    }
+
+    private IEnumerator PlayShrugAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_animator.SetTrigger(s_shrugTriggerHash);
+        yield return new WaitForSeconds(2f);
+        this.m_inputProcessor.enabled = true;
+    }
+
     private IEnumerator PlayGatherAnimation()
     {
         this.m_inputProcessor.enabled = false;
-        this.m_animator.SetTrigger("Gather");
+        this.m_animator.SetTrigger(s_gatherTriggerHash);
         yield return new WaitForSeconds(0.967f);
         this.m_inputProcessor.enabled = true;
     }
@@ -190,7 +245,7 @@ public class PlayerController : MonoBehaviour
     {
         this.m_inputProcessor.enabled = false;
         this.m_waterCan.SetActive(true);
-        this.m_animator.SetTrigger(s_waterAnimationTrigger);
+        this.m_animator.SetTrigger(s_waterAnimationTriggerHash);
         yield return new WaitForSeconds(5.583f);
         this.m_waterCan.SetActive(false);
         this.m_inputProcessor.enabled = true;

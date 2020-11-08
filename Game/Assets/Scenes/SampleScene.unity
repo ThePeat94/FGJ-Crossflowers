@@ -3161,7 +3161,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ccc1727caf8c2594fb6550a78e119008, type: 2}
+  - {fileID: 2100000, guid: c86024399e526624cb577077f6df0552, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19954,6 +19954,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 747.8602
       objectReference: {fileID: 0}
+    - target: {fileID: 2040545257416028343, guid: 81bf94b371b8a8144ba97580ccd15214, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2162966981415875785, guid: 81bf94b371b8a8144ba97580ccd15214, type: 3}
       propertyPath: m_dayTimeManager
       value: 
@@ -20535,6 +20539,22 @@ PrefabInstance:
     - target: {fileID: 8020778280605679208, guid: 22a0c8428987a10408d5dd567fc9f8ab, type: 3}
       propertyPath: m_movementSpeed
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020778280605679208, guid: 22a0c8428987a10408d5dd567fc9f8ab, type: 3}
+      propertyPath: m_ploughStaminaCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020778280605679208, guid: 22a0c8428987a10408d5dd567fc9f8ab, type: 3}
+      propertyPath: m_gatherStaminaCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020778280605679208, guid: 22a0c8428987a10408d5dd567fc9f8ab, type: 3}
+      propertyPath: m_waterStaminaCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020778280605679208, guid: 22a0c8428987a10408d5dd567fc9f8ab, type: 3}
+      propertyPath: m_waterFieldCost
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8020778280605679211, guid: 22a0c8428987a10408d5dd567fc9f8ab, type: 3}
       propertyPath: m_LocalPosition.x

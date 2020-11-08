@@ -11,7 +11,6 @@ public class PlayerInventory
     {
         this.Seeds = new List<Seed>
         {
-            new Seed(Color.cyan, 10, "Cyan"),
             new Seed(Color.red, 10, "Red"),
             new Seed(Color.yellow, 10, "Yellow")
         };

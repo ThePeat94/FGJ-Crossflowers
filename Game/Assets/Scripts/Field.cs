@@ -10,13 +10,10 @@ using Random = System.Random;
 public class Field : MonoBehaviour, IInteractable
 {
     private static Random s_random = new Random();
-
-    [SerializeField] private float m_ploughStaminaCost;
-    [SerializeField] private float m_waterCost;
+    
     [SerializeField] private float m_progressPerDay;
     [SerializeField] private Transform m_flowerTransform;
     [SerializeField] private MeshRenderer m_flowerRenderer;
-    [SerializeField] private GameObject m_center;
     [SerializeField] private bool m_isUnlocked;
 
     [SerializeField] private Outline m_outline;
@@ -39,8 +36,6 @@ public class Field : MonoBehaviour, IInteractable
     public bool IsPlanted => this.m_plantedSeed != null;
     public Seed PlantedSeed => this.m_plantedSeed;
     public bool IsUnlocked => this.m_isUnlocked;
-
-    public float PloughStaminaCost => this.m_ploughStaminaCost;
 
     private void Awake()
     {
@@ -83,7 +78,7 @@ public class Field : MonoBehaviour, IInteractable
             var newSeed = new Seed(this.m_plantedSeed.Color, 10, FlowerData.GetRandomFlowerName());
             var rndAmount = s_random.Next(2, 5);
 
-            Debug.Log($"Adding {rndAmount} new {newSeed.Name}s to inventory");
+            PlayerHudUI.Instance.ShowPlayerMonologue($"Yippie! I got {rndAmount} seeds for {newSeed.Name}. 😀");
 
             for (var i = 0; i < rndAmount; i++)
                 PlayerController.Instance.PlayerInventory.AddSeed(newSeed);
@@ -177,29 +172,27 @@ public class Field : MonoBehaviour, IInteractable
         }
     }
 
-    private bool CanWaterField()
+    public bool CanWaterField()
     {
-        return !this.m_isWatered &&
-               PlayerController.Instance.StaminaController.UseResource(this.m_ploughStaminaCost) &&
-               PlayerController.Instance.WaterController.UseResource(this.m_waterCost);
+        return !this.m_isWatered;
     }
 
-    private bool CanPlantSeed()
+    public bool CanPlantSeed()
     {
-        return this.m_isWatered && !this.IsPlanted && PlayerController.Instance.StaminaController.CanAfford(this.m_ploughStaminaCost);
+        return this.m_isWatered && !this.IsPlanted;
     }
 
     public bool CanHarvestFlower()
     {
-        return this.IsPlanted && this.m_currentProgress >= 1f && PlayerController.Instance.StaminaController.UseResource(this.m_ploughStaminaCost);
+        return this.IsPlanted && this.m_currentProgress >= 1f;
     }
 
-    private bool CanGrow()
+    public bool CanGrow()
     {
         return this.m_isWatered && this.IsPlanted;
     }
 
-    private bool CanGrowNewFlower()
+    public bool CanGrowNewFlower()
     {
         return this.m_isWatered && !this.IsPlanted && this.m_surroundingFields.Count(f => f.CanGrow()) > 1;
     }

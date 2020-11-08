@@ -18,7 +18,7 @@ namespace UI
             {
                 targetField.PlantSeed(seed);
                 PlayerHudUI.Instance.ClosePlantSeedUI();
-                PlayerController.Instance.PlantSeed(seed, targetField.PloughStaminaCost);
+                PlayerController.Instance.PlantSeed(seed);
             });
         }
     }

@@ -19,6 +19,7 @@ namespace UI
         [SerializeField] private Animator m_animator;
         [SerializeField] private TextMeshProUGUI m_dayTime;
         [SerializeField] private DayTimeManager m_dayTimeManager;
+        [SerializeField] private MonologueUI m_monologueUI;
 
         public static PlayerHudUI Instance => s_instance;
 
@@ -65,6 +66,7 @@ namespace UI
         {
             this.m_plantSeedUi.CloseUI();
             this.m_shopUI.CloseUI();
+            this.m_monologueUI.CloseUI();
         }
 
         public void ShowShopUI()
@@ -84,8 +86,13 @@ namespace UI
 
         public void PlayFadeAnimation()
         {
+            this.CloseAllMenus();
             this.m_animator.Play("UIFade");
         }
-        
+
+        public void ShowPlayerMonologue(string text)
+        {
+            this.m_monologueUI.ShowMonologue(text);
+        }
     }
 }
