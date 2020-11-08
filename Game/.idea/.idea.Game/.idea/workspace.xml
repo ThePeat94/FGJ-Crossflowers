@@ -20,19 +20,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01fd26be-56f0-4aad-b6cb-945e5447157e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Scriptables/PlayerData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Scriptables/PlayerData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/PlayerAnimationController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/PlayerAnimationController.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CREDITS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CREDITS.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Stamina Resource Data 1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Stamina Resource Data 1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Happy Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Happy Idle.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Shrugging.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Shrugging.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Walking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Shop Data/Seeds/Blue Seed Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Shop Data/Seeds/Blue Seed Data.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Shop Data/Seeds/Greem Seed Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Shop Data/Seeds/Greem Seed Data.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Shop Data/Seeds/Red Seed Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Shop Data/Seeds/Red Seed Data.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Field.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Field.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Character.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Character.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Chest.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Chest.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Chest_metal.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Chest_metal.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Chest_wood.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Chest_wood.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Flower.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Flower.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/FooBlossom.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/FooBlossom.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Hat.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Hat.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Rake.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Rake.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Rake.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Rake.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Water Trough.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Water Trough.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Water_trough.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Water_trough.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/WateringCan.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/WateringCan.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Watering_can.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Watering_can.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Field.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Field.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Buy Row.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Buy Row.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Row.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Row.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Sell Row.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Sell Row.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Field.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Field.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRP-HighQuality.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRP-HighQuality.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,12 +75,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptables/PlayerData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InputProcessor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraFollower.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Scenes/SampleScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ResourceController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Prefabs/UI/Seed Sell Row.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/351E49E2-A5BF-4FD6-BEAB-B458CE2255F3/f2/a50ce978/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://G:/Unity/GameJam2/Game/Assets/Scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Prefabs/UI/Seed Row.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Data/Player Data.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Prefabs/UI/Seed Buy Row.prefab" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -89,9 +122,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/MonologueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerInventory.cs" />
         <option value="$PROJECT_DIR$/Assets/CREDITS.txt" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Scriptables/PlayerData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Field.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Scriptables/PlayerData.cs" />
       </list>
     </option>
   </component>
@@ -192,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604799188469</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Watering Animation&#10;Player Data">
+      <created>1604841607471</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1604841607471</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +260,8 @@
     <MESSAGE value="Player Model Integrated" />
     <MESSAGE value="FieldUI&#10;Level&#10;Day&amp;Night Cycle&#10;Next Day" />
     <MESSAGE value="MonologueUI&#10;PlayerController now handels resource consumption&#10;Shrug Animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="MonologueUI&#10;PlayerController now handels resource consumption&#10;Shrug Animation" />
+    <MESSAGE value="Watering Animation&#10;Player Data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Watering Animation&#10;Player Data" />
   </component>
   <component name="WindowStateProjectService">
     <state width="584" height="797" key="DebuggerActiveHint" timestamp="1604792150208">
@@ -377,11 +418,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="118" y="0" width="2064" height="1400" key="MergeDialog/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604753044145" />
-    <state x="-1741" y="389" key="MultipleFileMergeDialog" timestamp="1604793995870">
+    <state x="-1741" y="389" key="MultipleFileMergeDialog" timestamp="1604841675468">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
     <state x="-1741" y="389" key="MultipleFileMergeDialog/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604753048922" />
-    <state x="-1741" y="389" key="MultipleFileMergeDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604793995870" />
+    <state x="-1741" y="389" key="MultipleFileMergeDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604841675468" />
     <state x="1063" y="172" key="RiderGenerateDialog" timestamp="1604833843523">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -389,21 +430,25 @@
     <state x="-1497" y="172" key="RiderGenerateDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604789835943" />
     <state x="1063" y="172" key="RiderGenerateDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1604833843523" />
     <state x="3623" y="174" key="RiderGenerateDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1413" timestamp="1604780880715" />
-    <state x="-1484" y="233" key="RollbackChangesDialog" timestamp="1604799286265">
+    <state x="-1484" y="233" key="RollbackChangesDialog" timestamp="1604842200553">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
-    <state x="-1484" y="233" key="RollbackChangesDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604799286265" />
+    <state x="-1484" y="233" key="RollbackChangesDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604842200553" />
+    <state x="-1423" y="586" key="VCS.EditChangelistDialog" timestamp="1604841025963">
+      <screen x="-2560" y="0" width="2560" height="1400" />
+    </state>
+    <state x="-1423" y="586" key="VCS.EditChangelistDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604841025963" />
     <state x="-2468" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog" timestamp="1604750473328">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
     <state x="-2468" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604750473328" />
-    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2" timestamp="1604799189922">
+    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2" timestamp="1604841608775">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
     <state x="-1788" y="343" key="Vcs.Push.Dialog.v2/-2560.0.2560.1400/2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604753072923" />
     <state x="-1788" y="343" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@-2560.0.2560.1400" timestamp="1604717169903" />
     <state x="772" y="343" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@0.0.2560.1400" timestamp="1604717879767" />
-    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604799189922" />
+    <state x="-1788" y="343" key="Vcs.Push.Dialog.v2/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604841608775" />
     <state x="-1119" y="302" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1604717122768">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
