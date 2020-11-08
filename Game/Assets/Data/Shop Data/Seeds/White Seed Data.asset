@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e5b4ffd0d047a4b3d5b363ed2cb01c, type: 3}
   m_Name: White Seed Data
   m_EditorClassIdentifier: 
-  m_name: White
+  m_name: Asteraceae
   m_buyValue: 50
   m_color: {r: 1, g: 1, b: 1, a: 1}
