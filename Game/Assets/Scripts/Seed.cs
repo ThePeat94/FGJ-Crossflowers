@@ -6,7 +6,7 @@ public class Seed
     public Seed(ShopSeedData seedData)
     {
         this.Color = seedData.Color;
-        this.SellValue = 0.25f;
+        this.SellValue = 1f;
         this.Name = seedData.Name;
     }
     

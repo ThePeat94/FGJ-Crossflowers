@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using EventArgs;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +16,9 @@ namespace UI
         [SerializeField] private Slider m_waterSlider;
         [SerializeField] private PlantSeedUI m_plantSeedUi;
         [SerializeField] private ShopUI m_shopUI;
+        [SerializeField] private Animator m_animator;
+        [SerializeField] private TextMeshProUGUI m_dayTime;
+        [SerializeField] private DayTimeManager m_dayTimeManager;
 
         public static PlayerHudUI Instance => s_instance;
 
@@ -49,6 +55,12 @@ namespace UI
             
             this.CloseAllMenus();
         }
+
+        private void LateUpdate()
+        {
+            this.m_dayTime.text = this.m_dayTimeManager.GetDateTime();
+        }
+
         public void CloseAllMenus()
         {
             this.m_plantSeedUi.CloseUI();
@@ -69,5 +81,11 @@ namespace UI
         {
             this.m_staminaSlider.value = e.NewValue;
         }
+
+        public void PlayFadeAnimation()
+        {
+            this.m_animator.Play("UIFade");
+        }
+        
     }
 }

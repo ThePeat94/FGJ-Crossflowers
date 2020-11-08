@@ -1,5 +1,5 @@
 ﻿using System;
-using EventArgs;
+using QuickOutline.Scripts;
 using Scriptables;
 using UI;
 using UnityEngine;
@@ -14,7 +14,7 @@ public class Shop : MonoBehaviour, IInteractable
     [SerializeField] private ResourceUpgradeData m_staminaUpgradeData;
     [SerializeField] private ResourceUpgradeData m_waterUpgradeData;
     [SerializeField] private UnlockFarmData m_unlockFarmData;
-
+    [SerializeField] private Outline m_outline;
     public ResourceUpgradeData StaminaUpgradeData => this.m_staminaUpgradeData;
     public ResourceUpgradeData WaterUpgradeData => this.m_waterUpgradeData;
     public UnlockFarmData UnlockFarmData => this.m_unlockFarmData;
@@ -39,6 +39,8 @@ public class Shop : MonoBehaviour, IInteractable
         }
         
         this.m_moneyController = new ResourceController(this.m_moneyResourceData);
+        
+        this.DisableOutline();
     }
 
     public void Interact()
@@ -82,5 +84,15 @@ public class Shop : MonoBehaviour, IInteractable
     {
         PlayerController.Instance.PlayerInventory.RemoveSeed(toSell);
         this.m_moneyController.Add(toSell.SellValue);
+    }
+    
+    public void EnableOutline()
+    {
+        this.m_outline.enabled = true;
+    }
+
+    public void DisableOutline()
+    {
+        this.m_outline.enabled = false;
     }
 }

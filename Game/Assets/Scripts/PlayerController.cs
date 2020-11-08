@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private Animator m_animator;
     private GameObject m_currentInteractable;
 
+    private IInteractable m_lastHit;
+    
     private static readonly int s_isWalkingHash = Animator.StringToHash("IsWalking");
     private static readonly int s_waterAnimationTrigger = Animator.StringToHash("Water");
 
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlantSeed(Seed seed, float ploughingCost)
     {
-        this.m_playerInventory.Seeds.Remove(seed);
+        this.m_playerInventory.RemoveSeed(seed);
         this.m_staminaController.UseResource(ploughingCost);
         StartCoroutine(this.PlayPloughAnimation());
     }
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         this.Move();
         this.Rotate();
+        this.OutlineInteractionTarget();
         if (this.m_inputProcessor.InteractTriggered)
             this.Interact();
 
@@ -84,6 +87,38 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         this.UpdateAnimator();
+    }
+
+    private void OutlineInteractionTarget()
+    {
+        try
+        {
+            var hitObjects = Physics.OverlapBox(this.transform.position + transform.forward, new Vector3(0.5f, 0.25f, 0.5f));
+            var hitInteractable = hitObjects.FirstOrDefault(o => o.GetComponent<IInteractable>() != null);
+            var hit = hitInteractable?.GetComponent<IInteractable>();
+
+            if (hit == null && this.m_lastHit != null)
+            {
+                this.m_lastHit.DisableOutline();
+                this.m_lastHit = null;
+            }
+            else if (hit != null && this.m_lastHit == null)
+            {
+                this.m_lastHit = hit;
+                this.m_lastHit.EnableOutline();
+            }
+            else if (hit != this.m_lastHit)
+            {
+                this.m_lastHit.DisableOutline();
+                this.m_lastHit = hit;
+                this.m_lastHit.EnableOutline();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+        
     }
     
     protected void Move()
@@ -122,9 +157,13 @@ public class PlayerController : MonoBehaviour
                 if (interactable is Field)
                 {
                     var field = (Field) interactable;
-                    if (!field.IsWatered)
+                    if (!field.IsWatered && !field.CanHarvestFlower())
                     {
                         StartCoroutine(this.PlayWaterAnimation());
+                    }
+                    else if (field.CanHarvestFlower())
+                    {
+                        StartCoroutine(this.PlayGatherAnimation());
                     }
                 }
                 
@@ -137,6 +176,14 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError(ex);
         }
+    }
+
+    private IEnumerator PlayGatherAnimation()
+    {
+        this.m_inputProcessor.enabled = false;
+        this.m_animator.SetTrigger("Gather");
+        yield return new WaitForSeconds(0.967f);
+        this.m_inputProcessor.enabled = true;
     }
 
     private IEnumerator PlayWaterAnimation()
