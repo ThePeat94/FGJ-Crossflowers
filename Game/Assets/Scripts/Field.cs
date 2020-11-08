@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Helper;
@@ -75,7 +76,7 @@ public class Field : MonoBehaviour, IInteractable
         if (this.CanHarvestFlower())
         {
             Debug.Log("Harvest harvest");
-            var newSeed = new Seed(this.m_plantedSeed.Color, 10, FlowerData.GetRandomFlowerName());
+            var newSeed = new Seed(this.m_plantedSeed.Color, 2.25f, FlowerData.GetRandomFlowerName());
             var rndAmount = s_random.Next(2, 5);
 
             PlayerHudUI.Instance.ShowPlayerMonologue($"Yippie! I got {rndAmount} seeds for {newSeed.Name}. 😀");
@@ -94,7 +95,7 @@ public class Field : MonoBehaviour, IInteractable
         {
             Debug.Log("Water water");
             this.m_isWatered = true;
-            this.m_fieldRenderer.material.color = this.m_wateredColor;
+            StartCoroutine(this.DelayColoringField());
             return;
         }
 
@@ -104,6 +105,12 @@ public class Field : MonoBehaviour, IInteractable
             PlayerHudUI.Instance.ShowPlantSeedUI(this);
             return;
         }
+    }
+
+    private IEnumerator DelayColoringField()
+    {
+        yield return new WaitForSeconds(1.75f);
+        this.m_fieldRenderer.material.color = this.m_wateredColor;
     }
 
     public void EnableOutline()
@@ -131,10 +138,7 @@ public class Field : MonoBehaviour, IInteractable
                 targetColor = Color.Lerp(targetColor, seed.Color, t);
             }
 
-            var newSeed = new Seed(targetColor, 10, FlowerData.GetRandomFlowerName());
-
-            Debug.Log("New Color is " + targetColor);
-
+            var newSeed = new Seed(targetColor, 3.25f * surroundingSeeds.Count, FlowerData.GetRandomFlowerName());
             this.PlantSeed(newSeed);
         }
         else if (this.CanGrow() && this.m_currentProgress < 1f)
