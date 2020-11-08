@@ -20,18 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01fd26be-56f0-4aad-b6cb-945e5447157e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MonologueUI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MonologueUI.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Field.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Field.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/BuyRow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/BuyRow.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/HUD.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/HUD.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Field.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Field.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerInventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerInventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PlantSeedRowUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PlantSeedRowUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerHudUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerHudUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Buy Row.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Buy Row.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Row.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Row.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Sell Row.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Seed Sell Row.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,15 +41,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InputProcessor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraFollower.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ResourceController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Prefabs/UI/Seed Sell Row.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/351E49E2-A5BF-4FD6-BEAB-B458CE2255F3/f2/a50ce978/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Scripts/Field.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://G:/Unity/GameJam2/Game/Assets/Scripts/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/Unity/GameJam2/Game/Assets/Prefabs/UI/Seed Row.prefab" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -128,10 +121,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="31220">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="31220" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -379,10 +372,10 @@
     <state x="1063" y="172" key="RiderGenerateDialog/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@0.0.2560.1400" timestamp="1604711271233" />
     <state x="-1497" y="172" key="RiderGenerateDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604789835943" />
     <state x="3623" y="174" key="RiderGenerateDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1413" timestamp="1604780880715" />
-    <state x="-1484" y="233" key="RollbackChangesDialog" timestamp="1604797099547">
+    <state x="-1484" y="233" key="RollbackChangesDialog" timestamp="1604837675065">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
-    <state x="-1484" y="233" key="RollbackChangesDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604797099547" />
+    <state x="-1484" y="233" key="RollbackChangesDialog/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604837675065" />
     <state x="-2468" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog" timestamp="1604750473328">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
@@ -398,6 +391,10 @@
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
     <state x="-1119" y="302" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.2560.1400/-2560.0.2560.1400/2560.0.2560.1400@-2560.0.2560.1400" timestamp="1604717122768" />
+    <state x="-1511" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604840430769">
+      <screen x="-2560" y="0" width="2560" height="1400" />
+    </state>
+    <state x="-1511" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2560.0.2560.1413/-2560.0.2560.1400/0.0.2560.1400@-2560.0.2560.1400" timestamp="1604840430769" />
     <state x="-40" y="-11" width="1402" height="911" maximized="true" key="dock-window-1" timestamp="1604798330875">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
