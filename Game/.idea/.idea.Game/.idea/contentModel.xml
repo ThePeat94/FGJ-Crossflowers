@@ -44,6 +44,7 @@
           <e p="ResourceController.cs" t="Include" />
           <e p="Scriptables" t="Include">
             <e p="LightningPreset.cs" t="Include" />
+            <e p="PlayerData.cs" t="Include" />
             <e p="ResourceData.cs" t="Include" />
             <e p="ResourceUpgradeData.cs" t="Include" />
             <e p="ShopSeedData.cs" t="Include" />
