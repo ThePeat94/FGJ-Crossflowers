@@ -21,4 +21,5 @@ MonoBehaviour:
   m_movementStaminaCost: 0.025
   m_staminaData: {fileID: 11400000, guid: 43a034c040e511640ba76e1408fe9f58, type: 2}
   m_waterData: {fileID: 11400000, guid: 5ef39628b5195154194f293d31d92a1e, type: 2}
-  m_wateringSound: {fileID: 0}
+  m_wateringSoundEffect: {fileID: 8300000, guid: b1a35cbd51a46e547af29e35d569cce4, type: 3}
+  m_rakingSoundEffect: {fileID: 8300000, guid: b900c1ca27225de429a264b18d300e59, type: 3}
