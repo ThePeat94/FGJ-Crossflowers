@@ -24,6 +24,7 @@ public class Field : MonoBehaviour, IInteractable
 
     [SerializeField] private MeshRenderer m_fieldRenderer;
     [SerializeField] private GameObject m_newFlowerUi;
+    [SerializeField] private GameObject m_hoveringCan;
 
     private EventHandler<System.EventArgs> m_fieldHasBeenPlanted;
 
@@ -65,6 +66,7 @@ public class Field : MonoBehaviour, IInteractable
         if (this.m_surroundingFields.Count(f => f.CanGrow()) > 1)
         {
             m_newFlowerUi.SetActive(true);
+            this.m_hoveringCan.SetActive(true);
         }
     }
 
@@ -84,7 +86,7 @@ public class Field : MonoBehaviour, IInteractable
                 PlayerController.Instance.PlayerInventory.AddSeed(this.m_plantedSeed);
 
             this.m_currentProgress = 0f;
-            this.m_flowerTransform.localScale = Vector3.zero;
+            StartCoroutine(this.DelayShrinkingFlower());
             this.m_isWatered = false;
             this.m_plantedSeed = null;
             return;
@@ -110,6 +112,13 @@ public class Field : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(1.75f);
         this.m_fieldRenderer.material.color = this.m_wateredColor;
+        this.m_hoveringCan.SetActive(false);
+    }
+
+    private IEnumerator DelayShrinkingFlower()
+    {
+        yield return new WaitForSeconds(0.967f);
+        this.m_flowerTransform.localScale = Vector3.zero;
     }
 
     public void EnableOutline()
