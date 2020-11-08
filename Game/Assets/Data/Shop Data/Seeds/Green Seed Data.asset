@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54e5b4ffd0d047a4b3d5b363ed2cb01c, type: 3}
-  m_Name: Greem Seed Data
+  m_Name: Green Seed Data
   m_EditorClassIdentifier: 
-  m_name: Green
-  m_buyValue: 1
+  m_name: Chrysanthemum
+  m_buyValue: 8
   m_color: {r: 0, g: 1, b: 0, a: 1}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e5b4ffd0d047a4b3d5b363ed2cb01c, type: 3}
   m_Name: Blue Seed Data
   m_EditorClassIdentifier: 
-  m_name: Blue
-  m_buyValue: 1
+  m_name: Forget-Me-Nots
+  m_buyValue: 8
   m_color: {r: 0, g: 0, b: 1, a: 1}
