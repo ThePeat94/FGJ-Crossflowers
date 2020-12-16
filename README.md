@@ -1,4 +1,4 @@
-# GameJam2
+# FGJ-Crossflowers
 
 Franken Game Jam Submission "Crossflowers" - Download here to play https://thepeat.itch.io/crossflowers
 Theme: Anticipation
